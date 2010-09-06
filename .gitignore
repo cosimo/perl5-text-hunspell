@@ -2,5 +2,6 @@ Hunspell.bs
 Hunspell.c
 Hunspell.o
 Makefile
+Makefile.old
 blib
 pm_to_blib
