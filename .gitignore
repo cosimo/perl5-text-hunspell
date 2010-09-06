@@ -1,0 +1,6 @@
+Hunspell.bs
+Hunspell.c
+Hunspell.o
+Makefile
+blib
+pm_to_blib
