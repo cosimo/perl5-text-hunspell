@@ -32,6 +32,5 @@ is_deeply(
 );
 
 # Curtains down
-$speller->delete($speller);
-ok(1, q(delete method presumably worked));
+ok($speller->delete($speller), q(delete method presumably worked));
 
