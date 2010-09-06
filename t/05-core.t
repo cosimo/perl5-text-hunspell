@@ -1,40 +1,37 @@
-#!/usr/bin/perl -w
-# first install perl-devel
-#  then install Text::Hunspell
-#
-use Text::Hunspell;
+use strict;
+use warnings;
+
 use Data::Dumper;
-    my $curDir;
-    $currDir = `pwd`;
-    chomp $currDir;
- #   print $currDir."/test.aff","\n";
-   my $speller = Text::Hunspell->new($currDir."/t/test.aff", $currDir."/t/test.dic");
+use Test::More tests => 6;
+use Text::Hunspell;
 
-    die unless $speller;
+my $speller = Text::Hunspell->new(qw(./t/test.aff ./t/test.dic));
+die unless $speller;
+ok($speller, qq(Created a Text::Hunspell object [$speller]));
 
+my $word = q(l贸t贸l);
+ok(
+    $speller->check($word),
+    qq(Word '$word' should be in the test dictionary)
+);
 
-    # Set some words
-    my $word = "l髏髄";
-    my $word1 = "l髈t髄";
-    my $misspelled = "l髈";
+$word = q(l贸ot贸l);
+ok(
+    ! $speller->check($word),
+    qq(Word '$word' shouldn't be in the test dictionary)
+);
 
-    # check a word
-    print $speller->check( $word )
-          ? "$word found\n"
-          : "$word not found!\n";
-    print $speller->check( $word1 )
-          ? "$word1 found\n"
-          : "$word1 not found!\n";
+# Check spell suggestions
+my $misspelled = q(l贸o);
+my @suggestions = $speller->suggest($misspelled);
+ok(scalar @suggestions > 0, q(Got some suggestions));
 
-    # lookup up words
-    my @suggestions;
-    @suggestions = $speller->suggest( $misspelled );
-    print Data::Dumper::Dumper( \@suggestions ); 
+is_deeply(
+    \@suggestions => [ qw(l贸i l贸 l贸t) ],
+    q(List of suggestions should be correct)
+);
 
-    $speller->delete($speller);
-    print "1..3\n";
-    print "ok\n";
-    print "ok\n";
-    print "ok\n";
+# Curtains down
+$speller->delete($speller);
+ok(1, q(delete method presumably worked));
 
- 
