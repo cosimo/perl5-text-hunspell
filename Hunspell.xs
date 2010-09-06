@@ -99,14 +99,15 @@ Hunspell::analyze(buf)
     char *buf;
     PREINIT:
         char **wlsti;
-	int i, val;
+        int i, val;
     PPCODE:
         handle = get_hunspell_handle();
-        val = THIS->analyze(&wlsti, buf);
-	for (int i = 0; i < val; i++) {
-            PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
-	    free(wlsti[i]);
-	}
+        val = handle->analyze(&wlsti, buf);
+        for (i = 0; i < val; i++) {
+            PUSHs(sv_2mortal(newSVpv(wlsti[i], 0)));
+            free(wlsti[i]);
+        }
+
 
 void 
 Hunspell::stem( buf)
