@@ -1,13 +1,11 @@
 package Text::Hunspell;
 
-# $Id: Hunspell.pm,v 2.1 2007/07/08 20:28:00 Eleonora Exp $
-
 require DynaLoader;
 
 use vars qw/  @ISA $VERSION /;
 @ISA = 'DynaLoader';
 
-$VERSION = '1.40_01';
+$VERSION = '2.00';
 
 bootstrap Text::Hunspell $VERSION;
 
