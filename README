@@ -1,11 +1,12 @@
-Text::Hunspell13 - Perl interface to the Hunspell library
+NAME
+
+Text::Hunspell - Perl interface to the Hunspell library
 
 DESCRIPTION
 
 Text::Hunspell is an interface to the GNU Hunspell library.  GNU Hunspell is a Free and Open Source spell checker.  The Text::Hunspell module is a thin XS wrapper around the Hunspell C++ Library.  Hopefully this is obvious, but you MUST have the Hunspell library installed on your system as a .so library, before installing this module.  You also MUST have any hunspell dictionary installed for "make test" to pass.
 
 Hunspell's location is http://hunspell.sourceforge.net
-
 
 See BUILD NOTES and CURRENT ISSUES below before reporting any bugs.
 
