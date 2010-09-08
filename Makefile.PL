@@ -1,3 +1,13 @@
+use lib qw(inc);
+use Devel::CheckLib;
+
+# Prompt the user here for any paths and other configuration
+
+check_lib_or_exit(
+    lib => 'hunspell',
+    header => 'hunspell/hunspell.h',
+);
+
 use ExtUtils::MakeMaker;
 
 my $CC = $ENV{"CXX"} || 'g++';

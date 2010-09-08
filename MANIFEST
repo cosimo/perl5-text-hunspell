@@ -1,16 +1,19 @@
 Changes
-MANIFEST
-README
-Makefile.PL
+examples/basic.pl
+hunspell.h
 Hunspell.pm
 Hunspell.xs
-hunspell.h
-typemap
+inc/Devel/CheckLib.pm
+Makefile.PL
+MANIFEST
+META.yml			Module meta-data (added by MakeMaker)
 perlobject.map
+README
+t/00-prereq.t
 t/01-use.t
 t/02-pod.t
 t/05-core.t
 t/06-analyze.t
 t/test.aff
 t/test.dic
-META.yml                                 Module meta-data (added by MakeMaker)
+typemap
