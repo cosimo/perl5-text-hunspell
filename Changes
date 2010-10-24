@@ -1,2 +1,22 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.02    2010/10/24 13:02:00    (cosimo)
+
+        Added an explicit warning if the unversioned libhunspell.so
+          symlink or library is not found. Linking will almost certainly
+          fail.
+
+2.01    2010/09                (cosimo)
+
+        Fixed build/test problems
+
+2.00    2010/09                (cosimo)
+
+        Now cosimo at cpan dot org is a co-maintainer for Text::Hunspell.
+
+        Added a dirty hack to work around some underlying changes in
+          libhunspell that made the XS code unable to initialize any
+          Hunspell object.
+
+1.xx    Author and maintainer was ELEONORA
+
