@@ -5,7 +5,7 @@ require DynaLoader;
 use vars qw/  @ISA $VERSION /;
 @ISA = 'DynaLoader';
 
-$VERSION = '2.02';
+$VERSION = '2.03';
 
 bootstrap Text::Hunspell $VERSION;
 
@@ -64,7 +64,6 @@ Text::Hunspell - Perl interface to the GNU Hunspell library
         print "  - $_\n";
     }
 
-    
     #------------------------------------------
     # ADVANCED STUFF FROM HERE
     # NOT SURE HOW IT SHOULD WORK
@@ -100,24 +99,24 @@ Text::Hunspell - Perl interface to the GNU Hunspell library
 
 =head1 DESCRIPTION
 
-This module provides a Perl interface to the OO B<Hunspell> library.  This module
-is to meet the need of looking up many words, one at a time, in a single
-session, such as spell-checking a document in memory.
+This module provides a Perl interface to the OO B<Hunspell> library.
+This module is to meet the need of looking up many words,
+one at a time, in a single session, such as spell-checking
+a document in memory.
 
 The example code describes the interface on http://hunspell.sf.net
-
 
 =head1 DEPENDENCIES
 
 B<You MUST have installed GNU Hunspell library version 1.0 or higher>
-on your system before installing this C<Text::Hunspell> Perl module.  
+on your system before installing this C<Text::Hunspell> Perl module.
 
 Hunspell location is:
 
     http://hunspell.sf.net
 
-There have been a number of bug reports because people failed to install hunspell
-before installing this module.
+There have been a number of bug reports because people failed to install
+hunspell before installing this module.
 
 This is an interface to the hunspell library installed on your system,
 not a replacement for hunspell.
@@ -128,54 +127,66 @@ test suite.
 Also, please see the README and Changes files.  README may have specific
 information about your platform.
 
-
 =head1 METHODS
 
 The following methods are available:
 
+=head2 C<Text::Hunspell->new($full_path_to_affix, $full_path_to_dic)>
+
+Creates a new speller object. Parameters are:
+
 =over 4
 
-=item $speller = Text::Hunspell->new($full_path_to_affix, $full_path_to_dic);
+=item full path of affix file
 
-Creates a new speller object.  New takes the parameters full_path_of_affix file and full_path_of_dic file 
-Returns C<undef> if the object could not be created, which is unlikely.
-
-Internally, new() creates the hunspell class.
-
-=item $speller->check($word);
-
-Check the word. Passes back 1, if the word found, 0 otherwise.
-
-=item $speller->suggest($misspelled_word);
-
-Passes back the list of suggestions for the misspelled word.
-
-=item $speller->analyze($word);
-
-Passes back the analyzis list for the word.
-
-=item $speller->stem($word);
-
-Passes back the stem list for the word.
-
-=item  $speller->generate2($stem, \@suggestions);
-
-Passes back morphologically modified stem as defined in @suggestions (got by analyzis)
-
-=item $speller->generate($stem, $word);
-
-Passes back morphologically modified stem like $word
-
-=item $string = $speller->delete($speller);
-
-deletes the speller class.
+=item full path of dictionary (dic) file
 
 =back
 
+Returns C<undef> if the object could not be created, which is unlikely.
+
+=head2 C<check($word)>
+
+Check the word. Returns 1 if the word is found, 0 otherwise.
+
+=head2 C<suggest($misspelled_word)>
+
+Returns the list of suggestions for the misspelled word.
+
+=head2 C<analyze($word)>
+
+Returns the analysis list for the word.
+TODO HOW? What does it return??
+
+See the examples in the examples/ folder for now.
+
+=head2 C<stem($word)>
+
+Returns the stem list for the word.
+
+=head2 C<generate2($stem, \@suggestions)>
+
+Returns a morphologically modified stem as defined in
+C<@suggestions> (got by analysis).
+
+TODO Explain ...
+
+=head2 C<generate($stem, $word)>
+
+Returns morphologically modified stem like $word.
+
+TODO WHY IS THIS DIFFERENT FROM generate2() ???
+EXPLAIN.
+
+=head2 C<$speller->delete($speller)>
+
+Deletes the speller class.
+
+TODO WHY IS THIS NEEDED?? Called on C<$speller> and needs C<$speller> ???
+
 =head1 BUGS
 
-Probably.
-Yes, definitely.
+Probably. Yes, definitely.
 
 =head1 COPYRIGHT
 
@@ -193,7 +204,8 @@ Current maintainer is:
 This module is based on a L<Text::Aspell>
 written by Bill Moseley moseley at hank dot org.
 
-Hunspell is written as myspell by Kevin B. Hendricks,
+Hunspell is written as myspell by Kevin B. Hendricks.
+
 Hunspell is maintained by Németh László.
 
 Please see:
