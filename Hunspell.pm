@@ -14,6 +14,8 @@ bootstrap Text::Hunspell $VERSION;
 1;
 __END__
 
+=encoding utf8
+
 =head1 NAME
 
 Text::Hunspell - Perl interface to the GNU Hunspell library

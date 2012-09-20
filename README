@@ -4,7 +4,12 @@ Text::Hunspell - Perl interface to the Hunspell library
 
 DESCRIPTION
 
-Text::Hunspell is an interface to the GNU Hunspell library.  GNU Hunspell is a Free and Open Source spell checker.  The Text::Hunspell module is a thin XS wrapper around the Hunspell C++ Library.  Hopefully this is obvious, but you MUST have the Hunspell library installed on your system as a .so library, before installing this module.  You also MUST have any hunspell dictionary installed for "make test" to pass.
+Text::Hunspell is an interface to the GNU Hunspell library.  GNU Hunspell is a
+Free and Open Source spell checker.  The Text::Hunspell module is a thin XS
+wrapper around the Hunspell C++ Library.  Hopefully this is obvious, but you
+MUST have the Hunspell library installed on your system as a .so library,
+before installing this module.  You also MUST have any hunspell dictionary
+installed for "make test" to pass.  
 
 Hunspell's location is http://hunspell.sourceforge.net
 
@@ -221,8 +226,8 @@ and also having to copy libstdc++* to /usr/lib.  YMMV.
 
 Changes compared to Hunspell::text
 
-hunspell.h was modified, since classe Hunspell was heavily modified between 1.2.8 and 1.4.x, among others methods spell and suggest got new parameters, that causes the function name to get modified from 
-U _ZN8Hunspell5spellEPKc
-to 
-U _ZN8Hunspell5spellEPKcPiPPc
+hunspell.h was modified, since classe Hunspell was heavily modified between
+1.2.8 and 1.4.x, among others methods spell and suggest got new parameters,
+that causes the function name to get modified from U _ZN8Hunspell5spellEPKc to
+U _ZN8Hunspell5spellEPKcPiPPc 
 

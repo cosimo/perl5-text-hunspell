@@ -1,5 +1,11 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.04    2012/09/20 23:05:00    (cosimo)
+
+        Fixed t/02_pod.t test due to newest Test::Pod and
+        missing =encoding directive. Thanks to SHLOMIF for
+        the patch.
+
 2.03    2011/06/24 11:12:00    (cosimo)
 
         Fixed use of "qw()" as parenthesis in inc/Devel/CheckLib.pm
