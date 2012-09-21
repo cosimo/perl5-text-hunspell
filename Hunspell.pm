@@ -5,7 +5,7 @@ require DynaLoader;
 use vars qw/  @ISA $VERSION /;
 @ISA = 'DynaLoader';
 
-$VERSION = '2.04';
+$VERSION = '2.05';
 
 bootstrap Text::Hunspell $VERSION;
 
@@ -208,7 +208,7 @@ written by Bill Moseley moseley at hank dot org.
 
 Hunspell is written as myspell by Kevin B. Hendricks.
 
-Hunspell is maintained by Németh László.
+Hunspell is maintained by NÃ©meth LÃ¡szlÃ³.
 
 Please see:
 

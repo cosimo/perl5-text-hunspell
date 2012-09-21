@@ -1,5 +1,10 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.05    2012/09/21 08:17:00    (cosimo)
+
+        Fixed RT#79630 incorrect encoding of Hunspell.pm POD documentation.
+        Thanks to Paul for the patch.
+
 2.04    2012/09/20 23:05:00    (cosimo)
 
         Fixed t/02_pod.t test due to newest Test::Pod and
