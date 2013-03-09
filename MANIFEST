@@ -14,6 +14,8 @@ t/01-use.t
 t/02-pod.t
 t/05-core.t
 t/06-analyze.t
+t/07-add-dictionary.t
+t/supp.dic
 t/test.aff
 t/test.dic
 typemap
