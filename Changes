@@ -1,5 +1,11 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.06    2013/03/09 11:39:28 Europe/Oslo (cosimo)
+
+        Implemented new add_dic() function from hunspell API.
+        Fixes RT#83765. Thanks to Paul Flo Williams for patch
+        and test case.
+
 2.05    2012/09/21 08:17:00    (cosimo)
 
         Fixed RT#79630 incorrect encoding of Hunspell.pm POD documentation.

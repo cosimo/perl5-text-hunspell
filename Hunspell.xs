@@ -69,6 +69,15 @@ Hunspell::delete(h)
         /* And return something to the caller too. */
         RETVAL = 1;
 
+int
+Hunspell::add_dic(dic)
+    char *dic;
+    CODE:
+        handle = get_hunspell_handle();
+        RETVAL = handle->add_dic(dic);
+
+    OUTPUT:
+        RETVAL
 
 int
 Hunspell::check(buf)
