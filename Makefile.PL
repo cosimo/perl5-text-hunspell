@@ -25,7 +25,8 @@ if (0 == $candidate_lib) {
     $possible_candidate ||= "/usr/lib/libhunspell-<ver>.so";
     warn "---------------------------------------------------------------------\n";
     warn "Your system doesn't appear to have a libhunspell.$dlext link.\n";
-    warn "Linking might fail. If it does, you might want to try:\n";
+    warn "Linking might fail. If it does, you might want to try installing\n";
+    warn "the libhunspell-dev package (or the equivalent on your OS) or try:\n";
     warn "\n";
     warn "    $Config{lns} $possible_candidate $def_lib.so\n";
     warn "---------------------------------------------------------------------\n";
