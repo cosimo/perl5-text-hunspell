@@ -5,7 +5,7 @@ require DynaLoader;
 use vars qw/  @ISA $VERSION /;
 @ISA = 'DynaLoader';
 
-$VERSION = '2.05';
+$VERSION = '2.06';
 
 bootstrap Text::Hunspell $VERSION;
 
@@ -65,6 +65,9 @@ Text::Hunspell - Perl interface to the GNU Hunspell library
     for (@stemming) {
         print "  - $_\n";
     }
+
+    # Add dictionaries later
+    $speller->add_dic('dictionary_file.dic');
 
     #------------------------------------------
     # ADVANCED STUFF FROM HERE
@@ -166,6 +169,10 @@ See the examples in the examples/ folder for now.
 
 Returns the stem list for the word.
 
+=head2 C<add_dic($path_to_dic)>
+
+Adds a new dictionary to the current C<Text::Hunspell> object.
+
 =head2 C<generate2($stem, \@suggestions)>
 
 Returns a morphologically modified stem as defined in
@@ -180,7 +187,7 @@ Returns morphologically modified stem like $word.
 TODO WHY IS THIS DIFFERENT FROM generate2() ???
 EXPLAIN.
 
-=head2 C<$speller->delete($speller)>
+=head2 C<< $speller->delete($speller) >>
 
 Deletes the speller class.
 
