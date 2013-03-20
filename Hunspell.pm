@@ -98,9 +98,6 @@ Text::Hunspell - Perl interface to the GNU Hunspell library
     print "Morphological modification generator...\n";
     print Data::Dumper::Dumper(\@suggestions);
 
-    # Deletes the underlying Hunspell C/C++ object
-    $speller->delete($speller);
-
 
 =head1 DESCRIPTION
 
@@ -186,12 +183,6 @@ Returns morphologically modified stem like $word.
 
 TODO WHY IS THIS DIFFERENT FROM generate2() ???
 EXPLAIN.
-
-=head2 C<< $speller->delete($speller) >>
-
-Deletes the speller class.
-
-TODO WHY IS THIS NEEDED?? Called on C<$speller> and needs C<$speller> ???
 
 =head1 BUGS
 
