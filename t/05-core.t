@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Data::Dumper;
-use Test::More tests => 6;
+use Test::More tests => 5;
 use Text::Hunspell;
 
 my $speller = Text::Hunspell->new(qw(./t/test.aff ./t/test.dic));
@@ -30,7 +30,3 @@ is_deeply(
     \@suggestions => [ qw(lói ló lót) ],
     q(List of suggestions should be correct)
 );
-
-# Curtains down
-ok($speller->delete($speller), q(delete method presumably worked));
-

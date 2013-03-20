@@ -19,16 +19,6 @@ using namespace std;
 
 /* $Id: Hunspell.xs,v 1.5 2002/08/29 20:28:00 moseley Exp $ */
 
-static Hunspell *handle;
-
-/* Needed for static initialization inside XS functions.
-   A hack, yes, since 'THIS' is always empty it seems.
-*/
-static Hunspell * get_hunspell_handle () {
-    assert(handle != NULL);
-    return handle;
-}
-
 static void * get_mortalspace ( size_t nbytes ) {
     SV * mortal;
     mortal = sv_2mortal( NEWSV(0, nbytes ) );
@@ -47,34 +37,28 @@ Hunspell::new(aff,dic )
     char *aff;
     char *dic;
     CODE:
-        /* Store the new object as static shared handle.
-           Every new will overwrite it. Ugly, but reasonable. */
-        handle = new Hunspell(aff, dic);
-        RETVAL = handle;
+        RETVAL = new Hunspell(aff, dic);
 
     OUTPUT:
         RETVAL
-
 
 int
 Hunspell::delete(h)
     Hunspell *h;
     CODE:
-        delete h;
-        /* If we deleted our shared static object (most likely)
-           then remove the reference to it, so it doesn't get used */
-        if (h == handle)
-            handle = NULL;
-
-        /* And return something to the caller too. */
+        warn("Text::Hunspell::delete() is deprecated and no replacement is needed");
         RETVAL = 1;
+    OUTPUT:
+        RETVAL
+
+void
+Hunspell::DESTROY()
 
 int
 Hunspell::add_dic(dic)
     char *dic;
     CODE:
-        handle = get_hunspell_handle();
-        RETVAL = handle->add_dic(dic);
+        RETVAL = THIS->add_dic(dic);
 
     OUTPUT:
         RETVAL
@@ -83,8 +67,7 @@ int
 Hunspell::check(buf)
     char *buf;
     CODE:
-        handle = get_hunspell_handle();
-        RETVAL = handle->spell(buf);
+        RETVAL = THIS->spell(buf);
 
     OUTPUT:
         RETVAL
@@ -96,8 +79,7 @@ Hunspell::suggest(buf)
         char **wlsti;
 	int i, val;
     PPCODE:
-        handle = get_hunspell_handle();
-        val = handle->suggest(&wlsti, buf);
+        val = THIS->suggest(&wlsti, buf);
 	for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
 	    free(wlsti[i]);
@@ -110,8 +92,7 @@ Hunspell::analyze(buf)
         char **wlsti;
         int i, val;
     PPCODE:
-        handle = get_hunspell_handle();
-        val = handle->analyze(&wlsti, buf);
+        val = THIS->analyze(&wlsti, buf);
         for (i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv(wlsti[i], 0)));
             free(wlsti[i]);
@@ -125,8 +106,7 @@ Hunspell::stem( buf)
         char **wlsti;
 	int i, val;
     PPCODE:
-        handle = get_hunspell_handle();
-        val = handle->stem(&wlsti, buf);
+        val = THIS->stem(&wlsti, buf);
 	for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
 	    free(wlsti[i]);
@@ -141,8 +121,7 @@ Hunspell::generate( buf, sample)
         char **wlsti;
 	int i, val;
     PPCODE:
-        handle = get_hunspell_handle();
-        val = handle->generate(&wlsti, buf, sample);
+        val = THIS->generate(&wlsti, buf, sample);
 	for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
 	    free(wlsti[i]);
@@ -171,8 +150,7 @@ Hunspell::generate2( buf, avref)
             array[i] = SvPV( *elem, PL_na );
         }
 
-        handle = get_hunspell_handle();
-        val = handle->generate(&wlsti, buf, array,  len);
+        val = THIS->generate(&wlsti, buf, array,  len);
 
         for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
