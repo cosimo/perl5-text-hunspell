@@ -1,5 +1,11 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.07    2013/03/26 20:45:00 Europe/Oslo (cosimo)
+
+        DEPRECATED the delete() method, and implemented proper
+        object handles in the hunspell XS glue. Again, thanks to
+        Paul Flo Williams for patch and test case. Closes RT#84054.
+
 2.06    2013/03/09 11:39:28 Europe/Oslo (cosimo)
 
         Implemented new add_dic() function from hunspell API.
