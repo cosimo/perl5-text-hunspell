@@ -51,5 +51,10 @@ WriteMakefile(
     PREREQ_PM     => {}, # e.g., Module::Name => 1.1
     XSOPT         => '-C++',
     TYPEMAPS      => ['perlobject.map', 'typemap'],
+    META_MERGE    => {
+        resources => {
+            repository => 'https://github.com/cosimo/perl5-text-hunspell',
+        },
+        keywords  => [ qw(hunspell spelling spell-checker text-processing) ],
+    },
 );
-
