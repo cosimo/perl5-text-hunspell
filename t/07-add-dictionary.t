@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Data::Dumper;
-use Test::More tests => 5;
+use Test::More tests => 4;
 use Text::Hunspell;
 
 my $speller = Text::Hunspell->new(qw(./t/test.aff ./t/test.dic));
@@ -24,6 +24,3 @@ ok(
     $speller->check($word),
     qq(Word '$word' is in the supplemental dictionary)
 );
-
-# Curtains down
-ok($speller->delete($speller), q(delete method presumably worked));
