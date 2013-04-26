@@ -18,17 +18,10 @@ __END__
 
 =head1 NAME
 
-Text::Hunspell - Perl interface to the GNU Hunspell library
+Text::Hunspell - Perl interface to the Hunspell library
 
 =head1 SYNOPSIS
 
-    # For this example to work, you have to have
-    # the US english dictionary installed!
-
-    use strict;
-    use warnings;
-
-    use Data::Dumper ();
     use Text::Hunspell;
 
     # You can use relative or absolute paths.
@@ -53,55 +46,13 @@ Text::Hunspell - Perl interface to the GNU Hunspell library
         print "  - $_\n";
     }
 
-    # Analysis of a word
-    $word = 'automatic';
-    my $analysis = $speller->analyze($word);
-    print "\n", "Analysis of '$word' returns '$analysis'\n";
-
-    # Word stemming
-    $word = 'development';
-    my @stemming = $speller->stem($word);
-    print "\n", "Stemming of '$word' returns:\n";
-    for (@stemming) {
-        print "  - $_\n";
-    }
-
     # Add dictionaries later
     $speller->add_dic('dictionary_file.dic');
-
-    #------------------------------------------
-    # ADVANCED STUFF FROM HERE
-    # NOT SURE HOW IT SHOULD WORK
-    #------------------------------------------
-
-    #
-    # Test here generator for morphological modification (NOM->ACC)
-    #
-    $word = 'developer';
-    my $stem = 'computer';
-    @suggestions = $speller->analyze($stem);
-    # Modify analyze output for required class (ACC)
-    for (@suggestions) {
-       s/NOM/ACC/g;
-    }
-    # Generate ACC class of stem
-    @suggestions = $speller->generate2($stem, \@suggestions);
-    print "Morphological modification generator...\n";
-    print Data::Dumper::Dumper(\@suggestions);
-
-
-    #
-    # Test generator for morphological modification,
-    # modify $stem like $word
-    #
-    @suggestions = $speller->generate($stem, $word);
-    print "Morphological modification generator...\n";
-    print Data::Dumper::Dumper(\@suggestions);
 
 
 =head1 DESCRIPTION
 
-This module provides a Perl interface to the OO B<Hunspell> library.
+This module provides a Perl interface to the B<Hunspell> library.
 This module is to meet the need of looking up many words,
 one at a time, in a single session, such as spell-checking
 a document in memory.
@@ -110,7 +61,7 @@ The example code describes the interface on http://hunspell.sf.net
 
 =head1 DEPENDENCIES
 
-B<You MUST have installed GNU Hunspell library version 1.0 or higher>
+B<You MUST have installed the Hunspell library version 1.0 or higher>
 on your system before installing this C<Text::Hunspell> Perl module.
 
 Hunspell location is:
@@ -133,75 +84,108 @@ information about your platform.
 
 The following methods are available:
 
-=head2 C<Text::Hunspell->new($full_path_to_affix, $full_path_to_dic)>
+=head2 Text::Hunspell->new($full_path_to_affix, $full_path_to_dic)
 
 Creates a new speller object. Parameters are:
 
 =over 4
 
-=item full path of affix file
+=item full path of affix (.aff) file
 
-=item full path of dictionary (dic) file
+=item full path of dictionary (.dic) file
 
 =back
 
 Returns C<undef> if the object could not be created, which is unlikely.
 
-=head2 C<check($word)>
+=head2 add_dic($path_to_dic)
+
+Adds a new dictionary to the current C<Text::Hunspell> object. This dictionary
+will use the same affix file as the original dictionary, so this is like using
+a personal word list in a given language. To check spellings in several
+different languages, use multiple C<Text::Hunspell> objects.
+
+=head2 check($word)
 
 Check the word. Returns 1 if the word is found, 0 otherwise.
 
-=head2 C<suggest($misspelled_word)>
+=head2 suggest($misspelled_word)
 
 Returns the list of suggestions for the misspelled word.
 
-=head2 C<analyze($word)>
+The following methods are used for morphological analysis, which is looking
+at the structure of words; parts of speech, inflectional suffixes and so on.
+However, most of the dictionaries that Hunspell can use are missing this
+information and only contain affix flags which allow, for example, 'cat' to
+turn into 'cats' but not 'catability'. (Users of the French and Hungarian
+dictionaries will find that they have more information available.)
 
-Returns the analysis list for the word.
-TODO HOW? What does it return??
+=head2 analyze($word)
 
-See the examples in the examples/ folder for now.
+Returns the analysis list for the word. This will be a list of
+strings that contain a stem word and the morphological information
+about the changes that have taken place from the stem. This will
+most likely be 'fl:X' strings that indicate that affix flag 'X'
+was applied to the stem. Words may have more than one stem, and
+each one will be returned as a different item in the list.
 
-=head2 C<stem($word)>
+However, with a French dictionary loaded, C<analyze('chanson')> will return
 
-Returns the stem list for the word.
+  st:chanson po:nom is:fem is:sg
 
-=head2 C<add_dic($path_to_dic)>
+to tell you that "chanson" is a feminine singular noun, and
+C<analyze('chansons')> will return
 
-Adds a new dictionary to the current C<Text::Hunspell> object.
+  st:chanson po:nom is:fem is:pl
 
-=head2 C<generate2($stem, \@suggestions)>
+to tell you that you've analyzed the plural of the same noun.
+
+=head2 stem($word)
+
+Returns the stem list for the word. This is a simpler version of the
+results from C<analyze()>.
+
+=head2 generate2($stem, \@suggestions)
 
 Returns a morphologically modified stem as defined in
 C<@suggestions> (got by analysis).
 
-TODO Explain ...
+With a French dictionary:
 
-=head2 C<generate($stem, $word)>
+  $feminine_form = 'chanteuse';
+  @ana = $speller->analyze($feminine_form);
+  $ana[0] =~ s/is:fem/is:mas/;
+  print $speller->generate2($feminine_form, \@ana)
+
+will print 'chanteur'.
+
+=head2 generate($stem, $word)
 
 Returns morphologically modified stem like $word.
 
-TODO WHY IS THIS DIFFERENT FROM generate2() ???
-EXPLAIN.
+  $french_speller->generate('danseuse', 'chanteur');
+
+tells us that the masculine form of 'danseuse' is 'danseur'.
+
 
 =head1 BUGS
 
 Probably. Yes, definitely.
 
-=head1 COPYRIGHT
+=head1 LICENSE
 
 This library is free software; you can redistribute it
 and/or modify it under the same terms as Perl itself.
 
 =head1 AUTHORS
 
-    Eleonora, E<lt>eleonora46_at_gmx_dot_netE<gt>
+Originally written by
+Eleonora, E<lt>eleonora46_at_gmx_dot_netE<gt>.
 
-Current maintainer is:
+The current maintainer is
+Cosimo Streppone, E<lt>cosimo@cpan.orgE<gt>
 
-    Cosimo Streppone, E<lt>cosimo@cpan.orgE<gt>
-
-This module is based on a L<Text::Aspell>
+This module is based on L<Text::Aspell>
 written by Bill Moseley moseley at hank dot org.
 
 Hunspell is written as myspell by Kevin B. Hendricks.
