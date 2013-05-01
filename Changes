@@ -1,5 +1,11 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.08    2013/05/01 23:22:35 Europe/Oslo (cosimo)
+
+        Improved main POD documentation for Hunspell.pm.
+        Fixes RT#84964. Thanks to Paul Flo Williams for the patch.
+        (https://github.com/cosimo/perl5-text-hunspell/pull/2)
+
 2.07    2013/03/26 20:45:00 Europe/Oslo (cosimo)
 
         DEPRECATED the delete() method, and implemented proper
