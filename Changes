@@ -1,5 +1,12 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.09    2014/10/20 07:56:00 Europe/Oslo (cosimo)
+
+        Fixed RT#99548, which should make it easier to install Text::Hunspell
+        on most systems. Basically replace my broken way of checking for
+        libhunspell by looking up pkgconfig using ExtUtils::PkgConfig.
+        Thanks to David Gutteridge for teaching me how to do it!
+
 2.08    2013/05/01 23:22:35 Europe/Oslo (cosimo)
 
         Improved main POD documentation for Hunspell.pm.

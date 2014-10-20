@@ -3,13 +3,11 @@ examples/basic.pl
 hunspell.h
 Hunspell.pm
 Hunspell.xs
-inc/Devel/CheckLib.pm
 Makefile.PL
 MANIFEST
 META.yml			Module meta-data (added by MakeMaker)
 perlobject.map
 README
-t/00-prereq.t
 t/01-use.t
 t/02-pod.t
 t/05-core.t
