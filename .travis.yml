@@ -1,0 +1,10 @@
+branches:
+  except:
+    - gh-pages
+language: perl
+perl:
+  - "5.16"
+before_install:
+  - sudo apt-get install libhunspell-1.3-0 hunspell-en-us libhunspell-dev myspell-es
+  - cpanm ExtUtils::PkgConfig
+script: "perl Makefile.PL && make disttest"
