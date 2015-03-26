@@ -1,5 +1,14 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.10    2015/03/26 11:24:00 Europe/Oslo (cosimo)
+
+        Fixed GH#5 (http://github.com/cosimo/perl5-text-hunspell/issues/5).
+        Should make Text::Hunspell installable without pain from CPAN and
+        cpanminus clients. The problem was in the undeclared use of
+        ExtUtils::PkgConfig, which needs to be known even before running
+        the configure (Makefile.PL) step. Thanks to Pavel Shaydo for reporting
+        the problem.
+
 2.09    2014/10/20 07:56:00 Europe/Oslo (cosimo)
 
         Fixed RT#99548, which should make it easier to install Text::Hunspell

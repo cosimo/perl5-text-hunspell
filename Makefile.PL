@@ -1,4 +1,5 @@
-use ExtUtils::MakeMaker;
+# Only EU::MM 6.52+ understands CONFIGURE_REQUIRES
+use ExtUtils::MakeMaker 6.52;
 use ExtUtils::PkgConfig;
 
 my $CC = $ENV{'CXX'} || 'g++';
@@ -13,7 +14,7 @@ if ($shlib_location ne '' && $header_location ne '') {
         LIBS          => [$shlib_location],
         CC            => $CC,
         LD            => '$(CC)',
-        PREREQ_PM     => {
+        CONFIGURE_REQUIRES => {
             'ExtUtils::PkgConfig' => 0,
         },
         XSOPT         => '-C++',
