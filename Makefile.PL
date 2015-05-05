@@ -2,7 +2,7 @@
 use ExtUtils::MakeMaker 6.52;
 use ExtUtils::PkgConfig;
 
-my $CC = $ENV{'CXX'} || 'g++';
+my $CC = $ENV{'CXX'} || 'c++';
 
 my $shlib_location = ExtUtils::PkgConfig->libs_only_l('hunspell');
 my $header_location = ExtUtils::PkgConfig->cflags_only_I('hunspell');
