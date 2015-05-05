@@ -5,7 +5,6 @@ Hunspell.pm
 Hunspell.xs
 Makefile.PL
 MANIFEST
-META.yml			Module meta-data (added by MakeMaker)
 perlobject.map
 README
 t/01-use.t
