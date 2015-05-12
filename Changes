@@ -1,5 +1,11 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.11    2015/05/12 14:19:07 Europe/Oslo (cosimo)
+
+        No functional changes, only minor cleanups and a fix for RT#99810
+        (compilation on non-gcc based systems). Thanks to bjakubski for sending
+        in patches on Github.
+
 2.10    2015/03/26 11:24:00 Europe/Oslo (cosimo)
 
         Fixed GH#5 (http://github.com/cosimo/perl5-text-hunspell/issues/5).
