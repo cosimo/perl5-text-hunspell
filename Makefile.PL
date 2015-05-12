@@ -15,6 +15,7 @@ if ($shlib_location ne '' && $header_location ne '') {
         CC            => $CC,
         LD            => '$(CC)',
         CONFIGURE_REQUIRES => {
+            'ExtUtils::MakeMaker' => "6.52",
             'ExtUtils::PkgConfig' => 0,
         },
         XSOPT         => '-C++',
