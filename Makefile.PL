@@ -15,7 +15,7 @@ my $header_location = Alien::Hunspell->cflags;
         LD            => '$(CC)',
         CONFIGURE_REQUIRES => {
             'ExtUtils::MakeMaker' => "6.52",
-            'ExtUtils::PkgConfig' => 0,
+            'Alien::Hunspell'     => 0,
         },
         XSOPT         => '-C++',
         TYPEMAPS      => ['perlobject.map', 'typemap'],
