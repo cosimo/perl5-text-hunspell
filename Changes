@@ -1,5 +1,13 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.12    2015/12/18 10:35:00 Europe/Oslo (cosimo)
+
+        Replaced ExtUtils::PkgConfig with Alien::Hunspell. This should allow
+        Text::Hunspell to build on non-pkgconfig-enabled systems, even though
+        I'm not sure how reliably it works. Will have to evaluate from CPAN
+        testers results. Thanks to Alien* expert Graham Ollis for this
+        contribution.
+
 2.11    2015/05/12 14:19:07 Europe/Oslo (cosimo)
 
         No functional changes, only minor cleanups and a fix for RT#99810
