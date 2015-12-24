@@ -1,4 +1,4 @@
-#include "hunspell.h"
+#include "hunspell.hxx"
 #include "assert.h"
 
 #ifdef __cplusplus

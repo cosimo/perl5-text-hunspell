@@ -1,6 +1,5 @@
 Changes
 examples/basic.pl
-hunspell.h
 Hunspell.pm
 Hunspell.xs
 Makefile.PL
