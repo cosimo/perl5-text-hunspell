@@ -14,6 +14,7 @@ extern "C" {
 #endif
 
 
+
 using namespace std;
 /*using namespace Hunspell;*/
 
@@ -80,8 +81,8 @@ Hunspell::suggest(buf)
         val = THIS->suggest(&wlsti, buf);
 	for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
-	    free(wlsti[i]);
 	}
+	THIS->free_list(&wlsti, val);
 
 void 
 Hunspell::analyze(buf)
@@ -93,8 +94,8 @@ Hunspell::analyze(buf)
         val = THIS->analyze(&wlsti, buf);
         for (i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv(wlsti[i], 0)));
-            free(wlsti[i]);
         }
+	THIS->free_list(&wlsti, val);
 
 
 void 
@@ -107,8 +108,8 @@ Hunspell::stem( buf)
         val = THIS->stem(&wlsti, buf);
 	for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
-	    free(wlsti[i]);
 	}
+	THIS->free_list(&wlsti, val);
 
 
 void 
@@ -122,8 +123,8 @@ Hunspell::generate( buf, sample)
         val = THIS->generate(&wlsti, buf, sample);
 	for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
-	    free(wlsti[i]);
 	}
+	THIS->free_list(&wlsti, val);
 
 
 void 
@@ -152,6 +153,6 @@ Hunspell::generate2( buf, avref)
 
         for (int i = 0; i < val; i++) {
             PUSHs(sv_2mortal(newSVpv( wlsti[i] ,0 )));
-            free(wlsti[i]);
         }
+	THIS->free_list(&wlsti, val);
 
