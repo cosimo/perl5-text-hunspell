@@ -198,7 +198,7 @@ Please see:
 
 For the dictionaries:
 
-   http://lingucomponent.openoffice.org/spell_dic.html
+   https://wiki.openoffice.org/wiki/Dictionaries
    http://magyarispell.sf.net for Hungarian dictionary
 
 =cut
