@@ -1,6 +1,7 @@
 # Only EU::MM 6.52+ understands CONFIGURE_REQUIRES
 use ExtUtils::MakeMaker 6.52;
 use Alien::Hunspell;
+use Config;
 
 my $CC = $ENV{'CXX'} || 'c++';
 
@@ -10,6 +11,7 @@ my $header_location = Alien::Hunspell->cflags;
     WriteMakefile(
         NAME          => 'Text::Hunspell',
         VERSION_FROM  => 'Hunspell.pm',
+        CCFLAGS       => "$Config{ccflags} $header_location",
         LIBS          => [$shlib_location],
         CC            => $CC,
         LD            => '$(CC)',
