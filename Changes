@@ -1,5 +1,13 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.13    2016/01/11 10:59:00 Europe/Oslo (cosimo)
+
+        Win32 build support added (Graham Ollis, @plicease).
+        This should make Text::Hunspell build correctly on Windows. \o/
+
+        *** If you're using Win32, make sure you use a recent version of
+        Alien::Base (>= 0.024) and/or Alien::Hunspell (soon-to-be 0.04)
+
 2.12    2015/12/18 10:35:00 Europe/Oslo (cosimo)
 
         Replaced ExtUtils::PkgConfig with Alien::Hunspell. This should allow
