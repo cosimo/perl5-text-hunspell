@@ -1,6 +1,6 @@
 # Only EU::MM 6.52+ understands CONFIGURE_REQUIRES
 use ExtUtils::MakeMaker 6.52;
-use Alien::Hunspell;
+use Alien::Hunspell 0.04;
 use Config;
 
 my $CC = $ENV{'CXX'} || 'c++';
@@ -16,8 +16,8 @@ my $header_location = Alien::Hunspell->cflags;
         CC            => $CC,
         LD            => '$(CC)',
         CONFIGURE_REQUIRES => {
-            'ExtUtils::MakeMaker' => "6.52",
-            'Alien::Hunspell'     => 0,
+            'ExtUtils::MakeMaker' => '6.52',
+            'Alien::Hunspell'     => '0.04',
         },
         XSOPT         => '-C++',
         TYPEMAPS      => ['perlobject.map', 'typemap'],

@@ -1,5 +1,10 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.14    2016/01/14 08:36:00 Europe/Oslo (cosimo)
+
+        No functional changes. Now Text::Hunspell depends on Alien::Hunspell
+        version 0.04. Should finally compile nicely on Win32 platform.
+
 2.13    2016/01/11 10:59:00 Europe/Oslo (cosimo)
 
         Win32 build support added (Graham Ollis, @plicease).
