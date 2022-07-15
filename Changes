@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::Hunspell.
 
+2.16    2022/07/15 13:04:00 Europe/Oslo (cosimo)
+
+        Included LICENSE file in distribution manifest.
+
 2.15    2022/07/15 12:19:00 Europe/Oslo (cosimo)
 
         Documentation and license improvements:

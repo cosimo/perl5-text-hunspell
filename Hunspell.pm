@@ -3,9 +3,10 @@ package Text::Hunspell;
 require DynaLoader;
 
 use vars qw/  @ISA $VERSION /;
+
 @ISA = 'DynaLoader';
 
-$VERSION = '2.15';
+$VERSION = '2.16';
 
 bootstrap Text::Hunspell $VERSION;
 
